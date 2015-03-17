@@ -14,6 +14,8 @@
 		33ABF12F1AB8E4CC00DCAB50 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33ABF12E1AB8E4CC00DCAB50 /* Images.xcassets */; };
 		33ABF1321AB8E4CC00DCAB50 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33ABF1301AB8E4CC00DCAB50 /* LaunchScreen.xib */; };
 		33ABF13E1AB8E4CC00DCAB50 /* MCMSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ABF13D1AB8E4CC00DCAB50 /* MCMSTests.m */; };
+		33ABF1491AB8E4EC00DCAB50 /* MagicalCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ABF1481AB8E4EC00DCAB50 /* MagicalCreature.m */; };
+		33ABF14C1AB8EC9800DCAB50 /* CreatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33ABF14B1AB8EC9800DCAB50 /* CreatureViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		33ABF1371AB8E4CC00DCAB50 /* MCMSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MCMSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33ABF13C1AB8E4CC00DCAB50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33ABF13D1AB8E4CC00DCAB50 /* MCMSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCMSTests.m; sourceTree = "<group>"; };
+		33ABF1471AB8E4EC00DCAB50 /* MagicalCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagicalCreature.h; path = ../MagicalCreature.h; sourceTree = "<group>"; };
+		33ABF1481AB8E4EC00DCAB50 /* MagicalCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagicalCreature.m; path = ../MagicalCreature.m; sourceTree = "<group>"; };
+		33ABF14A1AB8EC9800DCAB50 /* CreatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatureViewController.h; sourceTree = "<group>"; };
+		33ABF14B1AB8EC9800DCAB50 /* CreatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatureViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +91,11 @@
 				33ABF1261AB8E4CC00DCAB50 /* AppDelegate.m */,
 				33ABF1281AB8E4CC00DCAB50 /* ViewController.h */,
 				33ABF1291AB8E4CC00DCAB50 /* ViewController.m */,
+				33ABF1471AB8E4EC00DCAB50 /* MagicalCreature.h */,
+				33ABF1481AB8E4EC00DCAB50 /* MagicalCreature.m */,
 				33ABF12B1AB8E4CC00DCAB50 /* Main.storyboard */,
+				33ABF14A1AB8EC9800DCAB50 /* CreatureViewController.h */,
+				33ABF14B1AB8EC9800DCAB50 /* CreatureViewController.m */,
 				33ABF12E1AB8E4CC00DCAB50 /* Images.xcassets */,
 				33ABF1301AB8E4CC00DCAB50 /* LaunchScreen.xib */,
 				33ABF1211AB8E4CC00DCAB50 /* Supporting Files */,
@@ -220,7 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33ABF12A1AB8E4CC00DCAB50 /* ViewController.m in Sources */,
+				33ABF1491AB8E4EC00DCAB50 /* MagicalCreature.m in Sources */,
 				33ABF1271AB8E4CC00DCAB50 /* AppDelegate.m in Sources */,
+				33ABF14C1AB8EC9800DCAB50 /* CreatureViewController.m in Sources */,
 				33ABF1241AB8E4CC00DCAB50 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

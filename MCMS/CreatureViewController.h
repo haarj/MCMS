@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MagicalCreature.h"
 
 @interface CreatureViewController : UIViewController
+
+@property (nonatomic) MagicalCreature *creature;
 
 @end

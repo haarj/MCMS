@@ -10,4 +10,13 @@
 
 @implementation MagicalCreature
 
+-(instancetype)initWithName:(NSString *)creatureName
+{
+    self = [super init];
+    self.name = creatureName;
+    return self;
+
+}
+
+
 @end
