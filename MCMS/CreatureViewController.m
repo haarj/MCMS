@@ -9,6 +9,7 @@
 #import "CreatureViewController.h"
 
 @interface CreatureViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -16,7 +17,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.creature.name;
     
+}
+
+- (IBAction)onEditButtonTapped:(UIButton *)sender {
+    
+    if ([sender.titleLabel.text isEqualToString:@"Edit"] ) {
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        [self.textField becomeFirstResponder];
+    } else if ([sender.titleLabel.text isEqualToString:@"Done"]) {
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        [self.textField resignFirstResponder];
+        
+    }
 }
 
 @end
