@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface MagicalCreature : NSObject
 
 @property (nonatomic)NSString *name;
+@property (nonatomic)NSString *detail;
+@property (nonatomic)UIImage *creaturePicture;
+@property (nonatomic)NSMutableArray *accessories;
 
--(instancetype)initWithName:(NSString *)name;
+-(instancetype)initWithName:(NSString *)name andDetail:(NSString *)creatureDetail andAccessories:(NSMutableArray *)accessories;
 
 @end
