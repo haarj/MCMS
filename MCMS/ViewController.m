@@ -11,11 +11,12 @@
 #import "CreatureViewController.h"
 #import "BattleViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *detailTextField;
 @property (nonatomic)NSMutableArray *accesories;
+
 @end
 
 @implementation ViewController
@@ -35,6 +36,16 @@
 
 }
 
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [self.tableView reloadData]; //reload data will lose selection .
+//}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MagicalCreature *aCreature = [self.creatures objectAtIndex:indexPath.row];
+    cell.textLabel.text = aCreature.name;
+    cell.detailTextLabel.text = aCreature.detail;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -45,45 +56,63 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
-    MagicalCreature *aCreature = [self.creatures objectAtIndex:indexPath.row];
-    cell.textLabel.text = aCreature.name;
-    cell.detailTextLabel.text = aCreature.detail;
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+}
+
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 - (IBAction)onAddButtonTapped:(UIButton *)sender
 {
-    MagicalCreature *newCreature = [[MagicalCreature alloc]initWithName:self.nameTextField.text andDetail:self.detailTextField.text andAccessories:self.accesories];
-    [self.creatures addObject:newCreature];
-    self.nameTextField.text = @"";
-    [self.nameTextField resignFirstResponder];
-    [self.tableView reloadData];
+    if (![self.nameTextField.text isEqualToString:@""]) {
+        MagicalCreature *newCreature = [[MagicalCreature alloc]initWithName:self.nameTextField.text andDetail:self.detailTextField.text andAccessories:self.accesories];
+        [self.creatures addObject:newCreature];
+        self.nameTextField.text = @"";
+        [self.nameTextField resignFirstResponder];
+        self.detailTextField.text = @"";
+        [self.detailTextField resignFirstResponder];
+        [self.tableView reloadData];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *selectedCreatures = [NSMutableArray new];
+    for (NSIndexPath *indexPath in selectedIndexPaths) {
+        MagicalCreature *creature = self.creatures[indexPath.row];
+        [selectedCreatures addObject:creature];
+    }
     if ([segue.identifier isEqual:@"ShowCreatureSegue"])
     {
         CreatureViewController *creatureVC = segue.destinationViewController;
-        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-        MagicalCreature *aCreature = self.creatures[selectedIndexPath.row];
+        MagicalCreature *aCreature = selectedCreatures.lastObject;
         creatureVC.creature = aCreature;
-    } else if ([segue.identifier isEqual:@"ShowWinnerSegue"])
-    {
-
+    } else if ([segue.identifier isEqual:@"ShowWinnerSegue"]){
         BattleViewController *battleVC = segue.destinationViewController;
-        NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
-        NSMutableArray *selectedCreatures = [NSMutableArray new];
-
-//        NSLog(@"%@", winner.name);
-        for (NSIndexPath *indexPath in selectedIndexPaths) {
-            MagicalCreature *creature = self.creatures[indexPath.row];
-            [selectedCreatures addObject:creature];
-        }
         MagicalCreature *winner = selectedCreatures[arc4random()%selectedCreatures.count];
         battleVC.winner = winner;
-        NSLog(@"%@", selectedCreatures);
-//        battleVC.contenders = selectedCreatures;
+        battleVC.contenders = selectedCreatures.copy;
     }
 }
 

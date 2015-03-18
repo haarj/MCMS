@@ -12,6 +12,7 @@
 @interface BattleViewController : UIViewController
 
 @property MagicalCreature *winner;
+@property (nonatomic) NSArray *contenders;
 //@property (nonatomic) NSMutableArray *contenders;
 
 @end
